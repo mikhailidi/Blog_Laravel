@@ -11,10 +11,14 @@
 |
 */
 
-Route::get('/', 'PagesController@getIndex');
+Route::get('/', 'pagesController@getIndex');
 
-Route::get('/contact', 'PagesController@getContact');
-Route::get('/about', 'PagesController@getAbout');
+Route::get('contact', 'PagesController@getContact');
+Route::get('about', 'PagesController@getAbout');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('home', 'HomeController@index')->name('home');
+
+Route::resource('posts', 'PostController');
+
+Route::get('blog/{slug}', ['uses' => 'BlogController@getSingle', 'as' => 'blog.single'])->where('slug', '[\w\d\-\_]+');

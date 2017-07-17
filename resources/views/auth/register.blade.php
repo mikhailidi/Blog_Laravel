@@ -1,6 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.blog')
 
-@section('content')
+@section('title', ' Registration')
+
+@section('body')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">

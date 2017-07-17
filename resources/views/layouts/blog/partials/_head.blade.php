@@ -1,6 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,11 +10,11 @@
     <title>Blog | @yield('title')</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    {!! Html::style('css/bootstrap.min.css') !!}
 
-@yield('style')
+    @yield('style')
 
-<!-- Custom styles for this template -->
-    <link href="css/blog.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    {!! Html::style('css/blog.css') !!}
+    {!! Html::style('css/style.css') !!}
 
-</head>

@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Providers;
+use View;
 
 use Illuminate\Support\ServiceProvider;
+use App\User;
+use Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+
+        View::composer('*', function ($view) {
+            $view->withAuth(Auth::user());
+        });
     }
 }

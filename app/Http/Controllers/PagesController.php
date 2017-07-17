@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
 
 class PagesController extends Controller
 {
@@ -14,7 +15,9 @@ class PagesController extends Controller
         # complied or process data from the model if needed
         # pass the data to the correct view
 
-        return view('pages.welcome');
+        $posts = Post::orderBy('created_at', 'desc')->limit(4)->get();
+        return view('pages.welcome')->withPosts($posts);
+        //return view('pages.welcome');
 
     }
 
