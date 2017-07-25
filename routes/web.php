@@ -11,12 +11,24 @@
 |
 */
 
+/*
+ *
+ * Static Pages
+ *
+ * */
 Route::get('/', 'pagesController@getIndex');
 
 Route::get('contact', 'PagesController@getContact');
 Route::get('about', 'PagesController@getAbout');
+
+
 Auth::routes();
 
+/*
+ *
+ * Posts
+ *
+ * */
 Route::get('home', 'HomeController@index')->name('home');
 
 Route::resource('posts', 'PostController');
