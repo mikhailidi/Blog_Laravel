@@ -22,6 +22,12 @@
 
                 {{Form::label('slug', 'Slug:')}}
                 {{Form::text('slug', null, ['placeholder' => '/posts/{YOUR_SLUG}', 'class' => 'form-control', 'required' => '',  'minlength' => '5','maxlength' => '255'])}}
+                {{Form::label('category_id', 'Category:')}}
+                <select class="form-control" name="category_id" id="category_id">
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}" @if ($category->id == $post->category_id) selected @endif>{{ $category->name }}</option>
+                    @endforeach
+                </select>
 
                 {{Form::label('body', 'Post body:', ['style' => 'margin-top: 30px;'])}}
                 {{Form::textarea('body', null, ['placeholder' => 'Write your post here', 'required' => '', 'class' => 'form-control ', 'rows' => '12'])}}

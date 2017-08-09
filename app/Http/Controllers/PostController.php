@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -36,7 +37,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $categories = Category::all();
+        return view('posts.create', [
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -54,6 +58,7 @@ class PostController extends Controller
         $this->validate($request, [
             'title' => 'required|unique:posts|max:255',
             'slug' => 'required|alpha_dash|unique:posts|min:5|max:255, slug',
+            'category_id' => 'integer|required',
             'body' => 'required'
         ]);
 
@@ -61,6 +66,7 @@ class PostController extends Controller
         $post = new Post;
         $post->title = ucfirst($request->title);
         $post->slug = $request->slug;
+        $post->category_id = $request->category_id;
         $post->body = ucfirst($request->body);
 
         $post->save();
@@ -87,7 +93,9 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        return view('posts.show')->withPost($post);
+        return view('posts.show', [
+            'post' => $post,
+        ]);
     }
 
     /**
@@ -99,9 +107,11 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
+        $categories = Category::all();
 
         return view('posts.edit', [
-            'post' => $post
+            'post' => $post,
+            'categories' => $categories
 
         ]);
     }
@@ -123,6 +133,7 @@ class PostController extends Controller
         $this->validate($request, [
             'title' => 'required'.$validateTitle.'|max:255',
             'slug' => 'required|alpha_dash'.$validateSlug.'|min:5|max:255, slug',
+            'category_id' => 'integer|required',
             'body' => 'required'
         ]);
 
@@ -131,6 +142,7 @@ class PostController extends Controller
 
         $post->title = ucfirst($request->title);
         $post->slug = $request->slug;
+        $post->category_id = $request->category_id;
         $post->body = ucfirst($request->body);
 
         $post->save();

@@ -18,6 +18,9 @@
                         @if (Auth::check())
                             <li><a href="{{ url('home') }}">Profile</a></li>
                             <li role="separator" class="divider"></li>
+                            <li><a href="{{ route('posts.create') }}">Create New Post</a></li>
+                            <li><a href="{{ route('category.create') }}">Create New Category</a></li>
+                            <li role="separator" class="divider"></li>
                             <li><a href="{{ route('logout') }}">Log Out</a></li>
                         @else
                             <li><a href="{{ url('login') }}">Log In</a></li>

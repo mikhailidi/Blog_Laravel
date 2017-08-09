@@ -12,8 +12,11 @@
         <p></p>
         <div class="blog-post">
             <h2 class="blog-post-title">{{$post->title}}</h2>
-            <p class="blog-post-meta">{{\Carbon\Carbon::createFromTimestamp(strtotime($post->created_at))->diffForHumans()}}, by <a href="#">Pavlo Mikhailidi</a></p>
-
+            <p class="blog-post-meta">
+                {{\Carbon\Carbon::createFromTimestamp(strtotime($post->created_at))->diffForHumans()}},
+                by <a href="#">Pavlo Mikhailidi</a>,
+                Category: {{ $post->category->name }}
+            </p>
             <p class="lead">
                 {{$post->body}}
             </p>

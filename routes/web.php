@@ -32,5 +32,10 @@ Auth::routes();
 Route::get('home', 'HomeController@index')->name('home');
 
 Route::resource('posts', 'PostController');
+Route::group(['prefix' => 'category'], function (){
+    Route::get('/', 'CategoryController@index');
+    Route::get('create', 'CategoryController@create')->name('category.create');
+    Route::post('store', 'CategoryController@store')->name('category.store');
+});
 
 Route::get('blog/{slug}', ['uses' => 'BlogController@getSingle', 'as' => 'blog.single'])->where('slug', '[\w\d\-\_]+');
